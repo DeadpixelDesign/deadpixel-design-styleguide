@@ -30,4 +30,23 @@ export declare function Card(props: CardProps): React.ReactElement;
 export interface AlertProps { tone?: 'info' | 'success' | 'danger'; title?: string; children?: React.ReactNode; className?: string }
 export declare function Alert(props: AlertProps): React.ReactElement;
 
-declare global { interface Window { DeadPixel: { Button: typeof Button; Icon: typeof Icon; Link: typeof Link; Code: typeof Code; CodeBlock: typeof CodeBlock; Tag: typeof Tag; TextField: typeof TextField; Card: typeof Card; Alert: typeof Alert } } }
+export interface BreadcrumbProps { items: Array<{ label: string; href?: string }>; label?: string; className?: string }
+export declare function Breadcrumb(props: BreadcrumbProps): React.ReactElement;
+export interface DropdownProps { label?: string; items: Array<{ label: string; onClick?: () => void }>; className?: string }
+export declare function Dropdown(props: DropdownProps): React.ReactElement;
+export interface TabsProps { items: Array<{ label: string; content: React.ReactNode }>; className?: string }
+export declare function Tabs(props: TabsProps): React.ReactElement;
+export interface AccordionProps { items: Array<{ title: string; content: React.ReactNode }>; className?: string }
+export declare function Accordion(props: AccordionProps): React.ReactElement;
+export interface ProgressProps { value: number; label?: string; showValue?: boolean; className?: string }
+export declare function Progress(props: ProgressProps): React.ReactElement;
+export interface SpinnerProps { size?: 'sm' | 'lg'; label?: string; className?: string }
+export declare function Spinner(props: SpinnerProps): React.ReactElement;
+export interface PaginationProps { pages: number; current?: number; onChange?: (page: number) => void; label?: string; className?: string }
+export declare function Pagination(props: PaginationProps): React.ReactElement;
+export interface TableProps { headers: React.ReactNode[]; rows: React.ReactNode[][]; caption?: string; className?: string }
+export declare function Table(props: TableProps): React.ReactElement;
+export interface SelectFieldProps extends React.SelectHTMLAttributes<HTMLSelectElement> { label: string; options: Array<{ label: string; value: string }>; hint?: string; className?: string }
+export declare function SelectField(props: SelectFieldProps): React.ReactElement;
+
+declare global { interface Window { DeadPixel: { Button: typeof Button; Icon: typeof Icon; Link: typeof Link; Code: typeof Code; CodeBlock: typeof CodeBlock; Tag: typeof Tag; TextField: typeof TextField; Card: typeof Card; Alert: typeof Alert; Breadcrumb: typeof Breadcrumb; Dropdown: typeof Dropdown; Tabs: typeof Tabs; Accordion: typeof Accordion; Progress: typeof Progress; Spinner: typeof Spinner; Pagination: typeof Pagination; Table: typeof Table; SelectField: typeof SelectField } } }

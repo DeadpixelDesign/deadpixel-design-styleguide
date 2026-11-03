@@ -1,6 +1,6 @@
 # DeadPixel.Design style guide
 
-The design system for [DeadPixel.Design](https://deadpixel.design): color and type tokens with light and dark themes, fonts, the pixel skull logo, Material Symbols icons and a small set of React components.
+The design system for [DeadPixel.Design](https://deadpixel.design): color and type tokens with light and dark themes, fonts, the logo system, Material Symbols icons and a React component library.
 
 Open `index.html` (or the GitHub Pages site, if enabled) to see everything rendered.
 
@@ -11,10 +11,11 @@ Open `index.html` (or the GitHub Pages site, if enabled) to see everything rende
 | `docs/brand-book.md` | Usage rules: voice, color, type, spacing, states, iconography, logo |
 | `tokens/tokens.json` | Source of truth for every token (colors per theme, type scale, spacing, radius, shadows) |
 | `tokens/tokens.css` | The same tokens as CSS custom properties, `@font-face` rules and type classes (`.h1`, `.body`, `.label`…) |
-| `components/bundle.js` | Nine React 18 components on `window.DeadPixel`: Button, Icon, Link, Code, CodeBlock, Tag, TextField, Card, Alert |
+| `components/bundle.js` | React 18 components on `window.DeadPixel`: core controls plus Breadcrumb, Dropdown, Tabs, Accordion, Progress, Spinner, Pagination, Table, and SelectField |
 | `components/bundle.css` | Component styles, built only from tokens |
 | `components/index.d.ts` | Prop types for every component |
 | `components/<Name>/README.md` | Guidelines per component |
+| `docs/design-system.md` | Component inventory, Bootstrap-inspired coverage, usage, and extension rules |
 | `fonts/` | Raleway, Nunito Sans and Roboto Mono variable fonts, with their licenses |
 | `assets/logos/` | Pixel skull logo (full size and 512px) |
 | `assets/icons/` | Starter set of Material Symbols Outlined SVGs |

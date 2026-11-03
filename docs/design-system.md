@@ -1,6 +1,6 @@
 # DeadPixel.Design design system
 
-This system is built from the original style-guide archive. Tokens remain the source of truth for color, type, spacing, radius, shadows, focus rings, and light/dark themes. Components are exposed through `window.DeadPixel` and use those tokens rather than Bootstrap's default visual language.
+This system is built from the original style-guide archive. Tokens remain the source of truth for color, type, spacing, radius, shadows, focus rings, and light/dark themes. The shared contract is semantic HTML plus `tokens/tokens.css` and `components/bundle.css`. Framework adapters are optional.
 
 ## Component inventory
 
@@ -36,12 +36,12 @@ The extended set maps to common Bootstrap primitives, but follows DeadPixel toke
 ```html
 <link rel="stylesheet" href="tokens/tokens.css">
 <link rel="stylesheet" href="components/bundle.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
-<script src="components/bundle.js"></script>
+<button class="dp-btn dp-btn-primary" type="button">Start a project</button>
 ```
 
-Use the component APIs in `components/index.d.ts`. Each interactive component includes native keyboard and screen-reader semantics where applicable; consumers remain responsible for meaningful labels, focus management around larger workflows, and valid content.
+For React, load React 18, ReactDOM, and `components/bundle.js`; APIs are in `components/index.d.ts`. For Vue 3, load Vue and `components/vue.bundle.js`, then `app.use(window.DeadPixelVue)`. For Svelte 5 or SvelteKit, import components from `components/svelte/index.ts` into the app so the compiler can build them. The Vue and Svelte adapters currently cover Button, Tag, Card, Alert, and TextField; all other patterns can use the shared semantic HTML and classes shown on the site. The Svelte source is not a standalone browser script.
+
+Consumers remain responsible for meaningful labels, state, focus management, and valid content.
 
 ## Extension rules
 

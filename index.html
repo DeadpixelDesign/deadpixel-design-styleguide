@@ -19,6 +19,9 @@
   .component-group--actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); padding-block: var(--space-2); }
   .component-group--link { padding-block: var(--space-2); }
   .component-group .dp-card { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm); }
+  .component-subsection { display: grid; gap: var(--space-4); }
+  .component-subsection > .h3 { color: var(--ink); }
+  .component-divider { width: 100%; border: 0; border-top: 1px solid var(--line); margin: 0; }
   header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
   .logo { width: 88px; height: 80px; object-fit: contain; image-rendering: pixelated; background: transparent; display: block; }
 </style>
@@ -78,27 +81,44 @@
   ReactDOM.createRoot(document.getElementById('theme')).render(h(ThemeToggle));
 
   ReactDOM.createRoot(document.getElementById('components')).render(h(React.Fragment, null,
-    h('div', { className: 'component-group component-group--actions' },
-      h(D.Button, { iconAfter: 'arrow_forward' }, 'Start a project'),
-      h(D.Button, { variant: 'secondary' }, 'See the work'),
-      h(D.Button, { variant: 'ghost', icon: 'download' }, 'Style guide'),
-      h(D.Tag, null, 'WordPress'), h(D.Tag, { tone: 'blue' }, 'Case study'), h(D.Tag, { tone: 'red' }, 'New')),
-    h('div', { className: 'component-group component-group--link' },
-      h('p', { style: { margin: 0 } }, 'Visit ', h(D.Link, { href: 'https://deadpixel.design', external: true }, 'https://deadpixel.design'), ' or run ', h(D.Code, null, 'npm run build'), '.')),
-    h('div', { className: 'component-group' },
-      h('div', { className: 'grid' },
-      h(D.Card, { eyebrow: 'Case study', title: 'GEO audit for a SaaS docs site', href: '#', footer: '6 min read' }, 'How structured content raised citations in AI answers.'),
-        h(D.Card, { eyebrow: 'Service', title: 'Fullstack builds' }, 'React, Vue and WordPress, designed and shipped by one team.'))),
-    h('div', { className: 'component-group' },
-      h('div', { className: 'grid' },
-        h(D.TextField, { label: 'Work email', type: 'email', placeholder: 'name@company.com', hint: 'We reply within two business days.' }),
-        h(D.TextField, { label: 'Website', defaultValue: 'deadpixel', error: 'Enter a full URL, like https://example.com' }))),
-    h('div', { className: 'component-group' },
-      h(D.Alert, { tone: 'info', title: 'Heads up' }, 'The new style guide replaces the 2024 blue and red.'),
-      h(D.Alert, { tone: 'success', title: 'Published' }, 'Your changes are live.'),
-      h(D.Alert, { tone: 'danger', title: 'Build failed' }, 'Fix the missing token in tokens.json, then run the build again.')),
-    h('div', { className: 'component-group' },
-      h(D.CodeBlock, { filename: 'example.css', language: 'css', code: 'h1 { color: var(--blue); }\na { color: var(--link); }\na:hover { color: var(--link-hover); }' }))
+    h('div', { className: 'component-subsection' },
+      h('h3', { className: 'h3' }, 'Actions & tags'),
+      h('div', { className: 'component-group component-group--actions' },
+        h(D.Button, { iconAfter: 'arrow_forward' }, 'Start a project'),
+        h(D.Button, { variant: 'secondary' }, 'See the work'),
+        h(D.Button, { variant: 'ghost', icon: 'download' }, 'Style guide'),
+        h(D.Tag, null, 'WordPress'), h(D.Tag, { tone: 'blue' }, 'Case study'), h(D.Tag, { tone: 'red' }, 'New'))),
+    h('hr', { className: 'component-divider' }),
+    h('div', { className: 'component-subsection' },
+      h('h3', { className: 'h3' }, 'Links & inline code'),
+      h('div', { className: 'component-group component-group--link' },
+        h('p', { style: { margin: 0 } }, 'Visit ', h(D.Link, { href: 'https://deadpixel.design', external: true }, 'https://deadpixel.design'), ' or run ', h(D.Code, null, 'npm run build'), '.'))),
+    h('hr', { className: 'component-divider' }),
+    h('div', { className: 'component-subsection' },
+      h('h3', { className: 'h3' }, 'Cards'),
+      h('div', { className: 'component-group' },
+        h('div', { className: 'grid' },
+          h(D.Card, { eyebrow: 'Case study', title: 'GEO audit for a SaaS docs site', href: '#', footer: '6 min read' }, 'How structured content raised citations in AI answers.'),
+          h(D.Card, { eyebrow: 'Service', title: 'Fullstack builds' }, 'React, Vue and WordPress, designed and shipped by one team.')))),
+    h('hr', { className: 'component-divider' }),
+    h('div', { className: 'component-subsection' },
+      h('h3', { className: 'h3' }, 'Form fields'),
+      h('div', { className: 'component-group' },
+        h('div', { className: 'grid' },
+          h(D.TextField, { label: 'Work email', type: 'email', placeholder: 'name@company.com', hint: 'We reply within two business days.' }),
+          h(D.TextField, { label: 'Website', defaultValue: 'deadpixel', error: 'Enter a full URL, like https://example.com' })))),
+    h('hr', { className: 'component-divider' }),
+    h('div', { className: 'component-subsection' },
+      h('h3', { className: 'h3' }, 'Alerts'),
+      h('div', { className: 'component-group' },
+        h(D.Alert, { tone: 'info', title: 'Heads up' }, 'The new style guide replaces the 2024 blue and red.'),
+        h(D.Alert, { tone: 'success', title: 'Published' }, 'Your changes are live.'),
+        h(D.Alert, { tone: 'danger', title: 'Build failed' }, 'Fix the missing token in tokens.json, then run the build again.'))),
+    h('hr', { className: 'component-divider' }),
+    h('div', { className: 'component-subsection' },
+      h('h3', { className: 'h3' }, 'Code block'),
+      h('div', { className: 'component-group' },
+        h(D.CodeBlock, { filename: 'example.css', language: 'css', code: 'h1 { color: var(--blue); }\na { color: var(--link); }\na:hover { color: var(--link-hover); }' })))
   ));
 </script>
 </body>

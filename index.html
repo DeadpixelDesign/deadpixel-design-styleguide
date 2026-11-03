@@ -7,13 +7,17 @@
 <link rel="stylesheet" href="tokens/tokens.css">
 <link rel="stylesheet" href="components/bundle.css">
 <style>
-  main { display: grid; gap: var(--space-12); padding-block: var(--space-12); }
-  section { display: grid; gap: var(--space-4); }
+  main { display: grid; gap: var(--space-8); padding-block: var(--space-12); }
+  section { display: grid; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-alt); }
+  section > h2 { margin-bottom: var(--space-2); }
   .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-3); }
   .swatch { border-radius: var(--radius-md); background: var(--surface-alt); overflow: hidden; }
   .swatch i { display: block; height: 64px; box-shadow: inset 0 -1px 0 var(--line); }
   .swatch p { margin: 0; padding: var(--space-2) var(--space-3); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
+  .component-group { display: grid; gap: var(--space-4); }
+  .component-group--actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); padding-block: var(--space-2); }
+  .component-group--link { padding-block: var(--space-2); }
   header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
   .logo { width: 88px; height: 80px; object-fit: contain; image-rendering: pixelated; background: transparent; display: block; }
 </style>
@@ -73,23 +77,27 @@
   ReactDOM.createRoot(document.getElementById('theme')).render(h(ThemeToggle));
 
   ReactDOM.createRoot(document.getElementById('components')).render(h(React.Fragment, null,
-    h('div', { className: 'dp-row', style: { padding: 0 } },
+    h('div', { className: 'component-group component-group--actions' },
       h(D.Button, { iconAfter: 'arrow_forward' }, 'Start a project'),
       h(D.Button, { variant: 'secondary' }, 'See the work'),
       h(D.Button, { variant: 'ghost', icon: 'download' }, 'Style guide'),
       h(D.Tag, null, 'WordPress'), h(D.Tag, { tone: 'blue' }, 'Case study'), h(D.Tag, { tone: 'red' }, 'New')),
-    h('p', { style: { margin: 0 } }, 'Visit ', h(D.Link, { href: 'https://deadpixel.design', external: true }, 'https://deadpixel.design'), ' or run ', h(D.Code, null, 'npm run build'), '.'),
-    h('div', { className: 'grid' },
+    h('div', { className: 'component-group component-group--link' },
+      h('p', { style: { margin: 0 } }, 'Visit ', h(D.Link, { href: 'https://deadpixel.design', external: true }, 'https://deadpixel.design'), ' or run ', h(D.Code, null, 'npm run build'), '.')),
+    h('div', { className: 'component-group' },
+      h('div', { className: 'grid' },
       h(D.Card, { eyebrow: 'Case study', title: 'GEO audit for a SaaS docs site', href: '#', footer: '6 min read' }, 'How structured content raised citations in AI answers.'),
-      h(D.Card, { eyebrow: 'Service', title: 'Fullstack builds' }, 'React, Vue and WordPress, designed and shipped by one team.')),
-    h('div', { className: 'grid' },
-      h(D.TextField, { label: 'Work email', type: 'email', placeholder: 'name@company.com', hint: 'We reply within two business days.' }),
-      h(D.TextField, { label: 'Website', defaultValue: 'deadpixel', error: 'Enter a full URL, like https://example.com' })),
-    h('div', { style: { display: 'grid', gap: 'var(--space-3)' } },
+        h(D.Card, { eyebrow: 'Service', title: 'Fullstack builds' }, 'React, Vue and WordPress, designed and shipped by one team.'))),
+    h('div', { className: 'component-group' },
+      h('div', { className: 'grid' },
+        h(D.TextField, { label: 'Work email', type: 'email', placeholder: 'name@company.com', hint: 'We reply within two business days.' }),
+        h(D.TextField, { label: 'Website', defaultValue: 'deadpixel', error: 'Enter a full URL, like https://example.com' }))),
+    h('div', { className: 'component-group' },
       h(D.Alert, { tone: 'info', title: 'Heads up' }, 'The new style guide replaces the 2024 blue and red.'),
       h(D.Alert, { tone: 'success', title: 'Published' }, 'Your changes are live.'),
       h(D.Alert, { tone: 'danger', title: 'Build failed' }, 'Fix the missing token in tokens.json, then run the build again.')),
-    h(D.CodeBlock, { filename: 'example.css', language: 'css', code: 'h1 { color: var(--blue); }\na { color: var(--link); }\na:hover { color: var(--link-hover); }' })
+    h('div', { className: 'component-group' },
+      h(D.CodeBlock, { filename: 'example.css', language: 'css', code: 'h1 { color: var(--blue); }\na { color: var(--link); }\na:hover { color: var(--link-hover); }' }))
   ));
 </script>
 </body>

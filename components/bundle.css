@@ -105,6 +105,8 @@ textarea.dp-field-input { min-height: 96px; line-height: 1.5; resize: vertical; 
 .dp-accordion-item h3 button:hover { background: var(--surface-alt); }
 .dp-accordion-icon { color: var(--blue-text); font-size: 20px; }
 .dp-accordion-panel { padding: 0 var(--space-4) var(--space-4); background: var(--surface); color: var(--ink-muted); line-height: 1.5; }
+.dp-accordion summary { padding: var(--space-3) var(--space-4); cursor: pointer; font-weight: 700; background: var(--surface); color: var(--ink); }
+.dp-accordion > p { margin: 0; padding: 0 var(--space-4) var(--space-4); background: var(--surface); color: var(--ink-muted); line-height: 1.5; }
 .dp-progress { position: relative; height: 12px; overflow: hidden; border-radius: 999px; background: var(--surface-alt); box-shadow: inset 0 0 0 1px var(--line); }
 .dp-progress span { display: block; height: 100%; border-radius: inherit; background: var(--blue-text); transition: width .2s ease; }
 .dp-progress strong { display: block; margin-top: var(--space-2); color: var(--ink-muted); font: 700 12px/1.2 var(--font-sans); }

@@ -1,0 +1,21 @@
+DeadPixel.Design style guide
+Copyright 2024-2026 Pedro Enrique Matos Nuñez, DeadPixel.Design (https://deadpixel.design)
+
+Licensed under the Apache License, Version 2.0 (see LICENSE), except for the
+third-party files listed below, which keep their own licenses.
+
+Fonts (fonts/), SIL Open Font License 1.1 (see fonts/licenses/):
+- Raleway, Copyright 2010 The Raleway Project Authors, Reserved Font Name "Raleway".
+  Shipped unmodified.
+- Nunito Sans, Copyright 2016 The Nunito Sans Project Authors.
+  Instanced (wdth 100, YTLC 500) and subset to Latin.
+- Roboto Mono, Copyright 2015 The Roboto Mono Project Authors.
+  Subset to Latin.
+
+Icons (assets/icons/ and the icon paths embedded in components/bundle.js):
+Material Symbols by Google, Apache License 2.0,
+https://github.com/google/material-design-icons
+
+The DeadPixel.Design name and pixel skull logo (assets/logos/) are brand
+assets of DeadPixel.Design. The Apache License does not grant trademark rights
+(section 6).

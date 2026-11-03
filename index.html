@@ -15,7 +15,14 @@
   .swatch p { margin: 0; padding: var(--space-2) var(--space-3); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
   header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
-  .logo { width: 64px; image-rendering: pixelated; background: transparent; padding: var(--space-2); border-radius: var(--radius-sm); }
+  .logo { width: 64px; image-rendering: pixelated; background: transparent; padding: var(--space-2); border-radius: var(--radius-sm); display: block; }
+  .logo-dark { display: none; }
+  html[data-theme="dark"] .logo-light { display: none; }
+  html[data-theme="dark"] .logo-dark { display: block; }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]):not([data-theme="dark"]) .logo-light { display: none; }
+    html:not([data-theme="light"]):not([data-theme="dark"]) .logo-dark { display: block; }
+  }
 </style>
 </head>
 <body>
@@ -23,7 +30,8 @@
 <main>
   <header>
     <div style="display:flex;gap:var(--space-4);align-items:center">
-      <img class="logo" src="assets/logos/deadpixel-skull-512.png?v=9640e4c" alt="DeadPixel.Design pixel skull logo">
+      <img class="logo logo-light" src="assets/logos/deadpixel-skull-512.png?v=9640e4c" alt="DeadPixel.Design pixel skull logo">
+      <img class="logo logo-dark" src="assets/logos/deadpixel-skull-512-dark.png?v=9640e4c" alt="DeadPixel.Design pixel skull logo">
       <div><p class="label" style="margin:0;color:var(--ink-muted)">Style guide</p><h1 class="h1">DeadPixel.Design</h1></div>
     </div>
     <div id="theme"></div>

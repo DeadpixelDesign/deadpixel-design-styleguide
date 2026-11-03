@@ -7,222 +7,59 @@
 <link rel="stylesheet" href="tokens/tokens.css">
 <link rel="stylesheet" href="components/bundle.css">
 <style>
-  main { display: grid; gap: var(--space-8); padding-block: var(--space-12); }
-  section { display: grid; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-alt); }
-  section > h2 { margin-bottom: var(--space-2); }
-  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-3); }
-  .swatch { border-radius: var(--radius-md); background: var(--surface-alt); overflow: hidden; }
-  .swatch i { display: block; height: 64px; box-shadow: inset 0 -1px 0 var(--line); }
-  .swatch p { margin: 0; padding: var(--space-2) var(--space-3); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
-  .component-group { display: grid; gap: var(--space-4); }
-  .component-group--actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); padding-block: var(--space-2); }
-  .component-group--link { padding-block: var(--space-2); }
-  .component-group .dp-card { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm); }
-  .component-subsection { display: grid; gap: var(--space-4); }
-  .component-subsection > .h3 { color: var(--ink); }
-  .component-divider { width: 100%; border: 0; border-top: 1px solid var(--line); margin: 0; }
-  header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
-  .logo { width: 88px; height: 80px; object-fit: contain; image-rendering: pixelated; background: transparent; display: block; }
-  .intro, .guidance { max-width: 72ch; line-height: 1.5; margin: 0; color: var(--ink-muted); }
-  .section-nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-alt); }
-  .section-nav a { color: var(--link); font-weight: 700; text-underline-offset: 3px; }
-  .foundation-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: var(--space-4); }
-  .foundation-note { padding: var(--space-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); line-height: 1.5; }
-  .foundation-note h3 { margin-bottom: var(--space-2); }
-  .foundation-note p, .foundation-note ul { margin: 0; }
-  .foundation-note ul { padding-left: var(--space-4); }
-  .doc-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: var(--space-3); margin: 0; }
-  .doc-list div { padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
-  .doc-list dt { font-weight: 700; color: var(--ink); }
-  .doc-list dd { margin: var(--space-1) 0 0; line-height: 1.5; color: var(--ink-muted); }
-  .component-subsection { scroll-margin-top: var(--space-4); }
-  .component-subsection > p { margin: 0; }
-  .component-subsection .dp-tabs { min-width: min(100%, 300px); }
-  .component-subsection .dp-progress { max-width: 520px; }
-  @media (max-width: 600px) { section { padding: var(--space-4); } .foundation-grid, .doc-list { grid-template-columns: 1fr; } }
+main{display:grid;gap:var(--space-8);padding-block:var(--space-12)}
+section{display:grid;gap:var(--space-4);padding:var(--space-6);border:1px solid var(--line);border-radius:var(--radius-md);background:var(--surface-alt)}
+header,.row{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-3)}
+header{justify-content:space-between}.logo{width:88px;height:80px;object-fit:contain;image-rendering:pixelated}
+.lead,.guidance{max-width:72ch;line-height:1.5;margin:0;color:var(--ink-muted)}
+.section-nav{display:flex;flex-wrap:wrap;gap:var(--space-4);padding:var(--space-4);background:var(--surface-alt);border:1px solid var(--line);border-radius:var(--radius-md)}
+.section-nav a{color:var(--link);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4)}
+.doc-card,.preview{padding:var(--space-4);border:1px solid var(--line);border-radius:var(--radius-md);background:var(--surface)}
+.doc-card p{line-height:1.5;margin:var(--space-2) 0 0}.preview{display:grid;gap:var(--space-4)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:var(--space-3)}
+.swatch{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface)}
+.swatch i{display:block;height:56px}.swatch span{display:block;padding:var(--space-2);font-size:14px}
+.component-group{display:grid;gap:var(--space-4);padding-block:var(--space-2)}
+.component-group+.component-group{border-top:1px solid var(--line);padding-top:var(--space-6)}
+.component-group h3{color:var(--ink)}.component-group p{margin:0;line-height:1.5}
+.component-group .dp-card{border:1px solid var(--line);background:var(--surface)}
+.dp-progress{max-width:520px}.dp-codeblock pre{margin:0;padding:var(--space-4);overflow:auto}
+.framework-example{min-width:0}.framework-example pre{overflow:auto}
+@media(max-width:600px){section{padding:var(--space-4)}}
 </style>
 </head>
 <body>
-<div class="dp-container">
-<main>
-  <header>
-    <div style="display:flex;gap:var(--space-4);align-items:center">
-      <img class="logo" src="assets/logos/hangman-logo.svg?v=two-eye" alt="DeadPixel.Design hangman logo">
-      <div><p class="label" style="margin:0;color:var(--ink-muted)">Design system</p><h1 class="h1">DeadPixel.Design</h1></div>
-    </div>
-    <div id="theme"></div>
-  </header>
-  <p class="intro">A working reference for the DeadPixel.Design visual language. Explore the foundations, try the components, and use the guidance and code examples to build consistent interfaces.</p>
-  <nav class="section-nav" aria-label="Design system sections"><a href="#foundations">Foundations</a><a href="#typography">Typography</a><a href="#color">Color</a><a href="#components-section">Components</a><a href="#adoption">Use the system</a></nav>
-
-  <section id="foundations" aria-labelledby="foundations-title">
-    <h2 class="h2" id="foundations-title">Foundations</h2>
-    <p class="guidance">The original style guide supplies the tokens, typefaces, themes, and interaction rules. Use <code class="dp-code">tokens/tokens.json</code> as the source of truth and <code class="dp-code">tokens/tokens.css</code> in the browser.</p>
-    <div class="foundation-grid">
-      <div class="foundation-note"><h3 class="h3">Spacing & layout</h3><p>Use a 4px base scale: 4, 8, 12, 16, 24, 32, and 48px. The content container is 1200px wide with a 16px gutter. Use 16px inside cards and 24–48px between major groups.</p></div>
-      <div class="foundation-note"><h3 class="h3">Shape & elevation</h3><p>Use 4px corners for controls and 8px for cards and alerts. Keep surfaces mostly flat; use the small shadow for raised menus and hover feedback.</p></div>
-      <div class="foundation-note"><h3 class="h3">Interaction</h3><p>Controls need visible keyboard focus, meaningful labels, and at least 44px touch targets. Pair state colors with words or icons. Respect reduced motion.</p></div>
-      <div class="foundation-note"><h3 class="h3">Voice</h3><p>Write in American English, sentence case, and active voice. Use direct verbs for actions and plain technical language. Show descriptive link text.</p></div>
-    </div>
-  </section>
-
-  <section id="typography" aria-labelledby="typography-title">
-    <h2 class="h2" id="typography-title">Typography</h2>
-    <p class="guidance">Raleway 700 is for headings, Nunito Sans for interface and body text, and Roboto Mono for code. Keep long reading at a 1.5 line height and around 65 characters per line.</p>
-    <p class="h1">H1 · Raleway 34px</p>
-    <p class="h2">H2 · Raleway 25px</p>
-    <p class="h3">H3 · Raleway 20px</p>
-    <p class="body" style="margin:0">Body · Nunito Sans 16px, line-height 1.2. We design and build fast, accessible sites that search engines and AI answers can read.</p>
-    <p class="body-long" style="margin:0;max-width:65ch">Body long · line-height 1.5 for articles and case studies, where more air between lines makes long reading easier.</p>
-    <p class="small" style="margin:0;color:var(--ink-muted)">Small · Updated 30 Nov 2024 · 6 min read</p>
-  </section>
-
-  <section id="color" aria-labelledby="color-title">
-    <h2 class="h2" id="color-title">Color</h2>
-    <p class="guidance">Brand blue and red are for marks and large headings. Use <code class="dp-code">blue-text</code> and <code class="dp-code">red-text</code> for body-size text; semantic colors carry information alongside labels. The Light, Dark, and System controls above preview the same token set.</p>
-    <div class="swatches" id="swatches"></div>
-  </section>
-
-  <section id="components-section" aria-labelledby="components-title">
-    <h2 class="h2" id="components-title">Components</h2>
-    <p class="guidance">These live examples use the React component bundle. Each group includes its purpose, key options, and accessibility guidance. The API types are in <code class="dp-code">components/index.d.ts</code>.</p>
-    <div id="components" style="display:grid;gap:var(--space-6)"></div>
-  </section>
-  <section id="adoption" aria-labelledby="adoption-title">
-    <h2 class="h2" id="adoption-title">Use the system</h2>
-    <p class="guidance">Load the token stylesheet before the component stylesheet, then load React 18, ReactDOM, and the bundle. Components are available on <code class="dp-code">window.DeadPixel</code>. Theme follows the device unless <code class="dp-code">data-theme="light"</code> or <code class="dp-code">data-theme="dark"</code> is set on the root element.</p>
-    <pre class="dp-codeblock"><code>&lt;link rel="stylesheet" href="tokens/tokens.css"&gt;
-&lt;link rel="stylesheet" href="components/bundle.css"&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
-&lt;script src="components/bundle.js"&gt;&lt;/script&gt;</code></pre>
-    <p class="guidance">For implementation details, browse the <a class="dp-link" href="https://github.com/DeadpixelDesign/deadpixel-design-styleguide/tree/main/components">component source and types</a>. Add new patterns to the bundle, types, documentation, and this preview together.</p>
-  </section>
-</main>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
-<script src="components/bundle.js"></script>
-<script>
-  var D = window.DeadPixel, h = React.createElement;
-
-  var names = ['blue','red','blue-text','red-text','ink','ink-muted','surface','surface-alt','success','pixel-mint','pixel-teal','pixel-magenta','pixel-void','code-bg'];
-  document.getElementById('swatches').innerHTML = names.map(function (n) {
-    return '<div class="swatch"><i style="background:var(--' + n + ')"></i><p class="small"><strong>' + n + '</strong></p></div>';
-  }).join('');
-
-  function ThemeToggle() {
-    var s = React.useState(document.documentElement.getAttribute('data-theme') || 'system'), t = s[0], set = s[1];
-    function pick(v) { if (v === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v); set(v); }
-    return h('div', { style: { display: 'flex', gap: 'var(--space-2)' } },
-      ['light', 'dark', 'system'].map(function (v) {
-        return h(D.Button, { key: v, size: 'sm', variant: t === v ? 'primary' : 'ghost', onClick: function () { pick(v); } }, v[0].toUpperCase() + v.slice(1));
-      }));
-  }
-  ReactDOM.createRoot(document.getElementById('theme')).render(h(ThemeToggle));
-
-  ReactDOM.createRoot(document.getElementById('components')).render(h(React.Fragment, null,
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Actions & tags'),
-      h('div', { className: 'component-group component-group--actions' },
-        h(D.Button, { iconAfter: 'arrow_forward' }, 'Start a project'),
-        h(D.Button, { variant: 'secondary' }, 'See the work'),
-        h(D.Button, { variant: 'ghost', icon: 'download' }, 'Style guide'),
-        h(D.Tag, null, 'WordPress'), h(D.Tag, { tone: 'blue' }, 'Case study'), h(D.Tag, { tone: 'red' }, 'New'))),
-    h('hr', { className: 'component-divider' }),
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Links & inline code'),
-      h('div', { className: 'component-group component-group--link' },
-        h('p', { style: { margin: 0 } }, 'Visit ', h(D.Link, { href: 'https://deadpixel.design', external: true }, 'https://deadpixel.design'), ' or run ', h(D.Code, null, 'npm run build'), '.'))),
-    h('hr', { className: 'component-divider' }),
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Cards'),
-      h('div', { className: 'component-group' },
-        h('div', { className: 'grid' },
-          h(D.Card, { eyebrow: 'Case study', title: 'GEO audit for a SaaS docs site', href: '#', footer: '6 min read' }, 'How structured content raised citations in AI answers.'),
-          h(D.Card, { eyebrow: 'Service', title: 'Fullstack builds' }, 'React, Vue and WordPress, designed and shipped by one team.')))),
-    h('hr', { className: 'component-divider' }),
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Form fields'),
-      h('div', { className: 'component-group' },
-        h('div', { className: 'grid' },
-          h(D.TextField, { label: 'Work email', type: 'email', placeholder: 'name@company.com', hint: 'We reply within two business days.' }),
-          h(D.TextField, { label: 'Website', defaultValue: 'deadpixel', error: 'Enter a full URL, like https://example.com' }),
-          h(D.SelectField, { label: 'Project type', defaultValue: 'site', options: [{ label: 'Website', value: 'site' }, { label: 'Product', value: 'product' }, { label: 'Brand system', value: 'brand' }], hint: 'Choose the closest fit.' })))),
-    h('hr', { className: 'component-divider' }),
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Alerts'),
-      h('div', { className: 'component-group' },
-        h(D.Alert, { tone: 'info', title: 'Heads up' }, 'The new style guide replaces the 2024 blue and red.'),
-        h(D.Alert, { tone: 'success', title: 'Published' }, 'Your changes are live.'),
-        h(D.Alert, { tone: 'danger', title: 'Build failed' }, 'Fix the missing token in tokens.json, then run the build again.'))),
-    h('hr', { className: 'component-divider' }),
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Navigation & disclosure'),
-      h(D.Breadcrumb, { items: [{ label: 'Home', href: '#' }, { label: 'Work', href: '#' }, { label: 'Style guide' }] }),
-      h('div', { className: 'component-group--actions' },
-        h(D.Dropdown, { label: 'More actions', items: [{ label: 'View documentation' }, { label: 'Copy link' }, { label: 'Download assets' }] }),
-        h(D.Tabs, { items: [{ label: 'Overview', content: 'A compact tab set for switching between related views.' }, { label: 'Usage', content: 'Keep tab labels short and preserve the selected state.' }] })),
-      h(D.Accordion, { items: [{ title: 'When should I use this?', content: 'Use disclosure when supporting detail should remain available without competing with the primary content.' }, { title: 'What happens on mobile?', content: 'The pattern remains stacked and keyboard-accessible.' }] })),
-    h('hr', { className: 'component-divider' }),
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Status & data'),
-      h(D.Progress, { value: 68, showValue: true, label: 'Project completion' }),
-      h('div', { className: 'component-group--actions' }, h(D.Spinner, { size: 'sm' }), h('span', { className: 'small' }, 'Loading the latest project status…')),
-      h(D.Pagination, { pages: 4, current: 2 }),
-      h(D.Table, { caption: 'Recent projects', headers: ['Project', 'Type', 'Status'], rows: [['GEO audit', 'Case study', 'Published'], ['Fullstack build', 'Service', 'In progress'], ['Brand refresh', 'Identity', 'Draft']] })),
-    h('hr', { className: 'component-divider' }),
-    h('div', { className: 'component-subsection' },
-      h('h3', { className: 'h3' }, 'Code block'),
-      h('div', { className: 'component-group' },
-        h(D.CodeBlock, { filename: 'example.css', language: 'css', code: 'h1 { color: var(--blue); }\na { color: var(--link); }\na:hover { color: var(--link-hover); }' })))
-  ));
-  var componentGuidance = {
-    'Actions & tags': [
-      ['Button', 'Use primary for the main action, secondary for supporting actions, and ghost for low emphasis. Sizes: medium and small. Keep labels verb-led; provide a label for icon-only buttons.'],
-      ['Tag', 'Use neutral, blue, or red tone for compact metadata. A tag does not perform an action; use a button or link when it is interactive.']
-    ],
-    'Links & inline code': [
-      ['Link', 'Use descriptive link text. External links open in a new tab with a visible icon and safe link attributes.'],
-      ['Code', 'Use inline code for commands, filenames, tokens, and values within a sentence.']
-    ],
-    'Cards': [['Card', 'Group a title, eyebrow, body, and optional footer. Add href only when the whole card represents a destination. Keep one clear linked title.']],
-    'Form fields': [
-      ['TextField', 'Always provide a visible label. Use hint for help and error for validation; errors are associated with the input and set aria-invalid. Supports multiline input.'],
-      ['SelectField', 'Use a native select for a short, known list of options. Provide a visible label and a helpful default.']
-    ],
-    'Alerts': [['Alert', 'Use info, success, or danger tone for feedback. Include a useful title and plain-language next step. Danger is announced as an alert.']],
-    'Navigation & disclosure': [
-      ['Breadcrumb', 'Show hierarchy from broad to specific. The final item represents the current page.'],
-      ['Dropdown', 'Use for secondary actions that belong together. Keep menu item labels specific.'],
-      ['Tabs', 'Switch between related views at the same level. Keep labels short and make the active view clear.'],
-      ['Accordion', 'Reveal supporting information on demand. Headings remain visible while panels open and close.']
-    ],
-    'Status & data': [
-      ['Progress', 'Show measurable completion from 0 to 100 with a descriptive label.'],
-      ['Spinner', 'Use only when duration is unknown; pair it with a visible status message.'],
-      ['Pagination', 'Use for stable page sets. Supply the current page and update it with onChange.'],
-      ['Table', 'Use for comparable records. Provide a caption and column headings; the first cell of each row identifies the record.']
-    ],
-    'Code block': [['CodeBlock', 'Use for copyable, multi-line examples. Provide a filename or language when it helps readers understand the snippet.']]
-  };
-  // React commits the preview before the next frame; add documentation beside each group.
-  requestAnimationFrame(function () {
-    document.querySelectorAll('.component-subsection').forEach(function (group) {
-      var title = group.querySelector('h3');
-      var entries = title && componentGuidance[title.textContent];
-      if (!entries) return;
-      var list = document.createElement('dl'); list.className = 'doc-list';
-      entries.forEach(function (entry) {
-        var item = document.createElement('div'), term = document.createElement('dt'), detail = document.createElement('dd');
-        term.textContent = entry[0]; detail.textContent = entry[1];
-        item.append(term, detail); list.appendChild(item);
-      });
-      title.insertAdjacentElement('afterend', list);
-    });
-  });
-</script>
+<div class="dp-container"><main>
+<header><div class="row"><img class="logo" src="assets/logos/hangman-logo.svg?v=two-eye" alt="DeadPixel.Design cowboy sphere logo"><div><p class="label">Design system</p><h1 class="h1">DeadPixel.Design</h1></div></div><div class="row" aria-label="Theme preview"><button class="dp-btn dp-btn-sm dp-btn-ghost" type="button" data-theme-choice="light">Light</button><button class="dp-btn dp-btn-sm dp-btn-ghost" type="button" data-theme-choice="dark">Dark</button><button class="dp-btn dp-btn-sm dp-btn-ghost" type="button" data-theme-choice="system">System</button></div></header>
+<p class="lead">A framework independent design system built from shared tokens, CSS classes, semantic HTML, and optional framework adapters.</p>
+<nav class="section-nav" aria-label="Design system sections"><a href="#foundations">Foundations</a><a href="#typography">Typography</a><a href="#color">Color</a><a href="#components">Components</a><a href="#integrations">Frameworks</a></nav>
+<section id="foundations"><h2 class="h2">Foundations</h2><p class="guidance">The original style guide is the source for the visual language. Use <code class="dp-code">tokens/tokens.json</code> as the token source and load <code class="dp-code">tokens/tokens.css</code> before the component CSS.</p><div class="grid"><div class="doc-card"><h3 class="h3">Spacing</h3><p>Use the 4px scale: 4, 8, 12, 16, 24, 32, 48px. Keep a 16px content gutter and give major groups room to breathe.</p></div><div class="doc-card"><h3 class="h3">Shape</h3><p>Use 4px corners for controls, 8px for cards and alerts. Reserve shadows for raised elements.</p></div><div class="doc-card"><h3 class="h3">Interaction</h3><p>Use visible labels and focus states. Pair status color with words, and respect reduced motion.</p></div><div class="doc-card"><h3 class="h3">Voice</h3><p>Write in sentence case and active voice. Use direct action labels and descriptive links.</p></div></div></section>
+<section id="typography"><h2 class="h2">Typography</h2><p class="guidance">Raleway 700 for headings, Nunito Sans for body and interface text, Roboto Mono for code. Long reading uses a 1.5 line height and about 65 characters per line.</p><p class="h1">H1 · Raleway 34px</p><p class="h2">H2 · Raleway 25px</p><p class="h3">H3 · Raleway 20px</p><p class="body-long">Body · A readable long-form paragraph with room between lines.</p><code class="dp-code">npm run build</code></section>
+<section id="color"><h2 class="h2">Color</h2><p class="guidance">Brand blue and red are for large headings and marks. Use blue-text and red-text for smaller text. Theme tokens switch with the controls above or the device setting.</p><div class="swatches" id="swatches"></div></section>
+<section id="components"><h2 class="h2">Components</h2><p class="guidance">These previews use semantic HTML and CSS. Native controls handle disclosure, and a small browser script handles the theme preview. The same classes work in Svelte, Vue, React, or server-rendered templates.</p>
+<div class="component-group"><h3 class="h3">Actions & tags</h3><p>Use primary for one main action, secondary for support, ghost for low emphasis. Tags are noninteractive metadata.</p><div class="preview row"><button class="dp-btn dp-btn-primary" type="button">Start a project</button><button class="dp-btn dp-btn-secondary" type="button">See the work</button><button class="dp-btn dp-btn-ghost" type="button">Style guide</button><span class="dp-tag dp-tag-neutral">WordPress</span><span class="dp-tag dp-tag-blue">Case study</span><span class="dp-tag dp-tag-red">New</span></div></div>
+<div class="component-group"><h3 class="h3">Links & code</h3><p>Use descriptive link text and inline code for commands, paths, and tokens.</p><div class="preview"><p>Visit <a class="dp-link" href="https://deadpixel.design">DeadPixel.Design</a> or run <code class="dp-code">npm run build</code>.</p></div></div>
+<div class="component-group"><h3 class="h3">Cards</h3><p>Group a title, supporting text, and optional footer. Link the title when the card is a destination.</p><div class="grid"><article class="dp-card"><p class="dp-card-eyebrow">Case study</p><h4 class="dp-card-title"><a href="#components">GEO audit</a></h4><div class="dp-card-body">How structured content raised citations in AI answers.</div><div class="dp-card-footer">6 min read</div></article><article class="dp-card"><p class="dp-card-eyebrow">Service</p><h4 class="dp-card-title">Fullstack builds</h4><div class="dp-card-body">React, Vue, and SvelteKit builds.</div></article></div></div>
+<div class="component-group"><h3 class="h3">Form fields</h3><p>Always show a label. Associate hints and errors with the control.</p><div class="grid"><div class="dp-field"><label class="dp-field-label" for="email">Work email</label><input class="dp-field-input" id="email" type="email" placeholder="name@company.com" aria-describedby="email-hint"><p class="dp-field-msg" id="email-hint">We reply within two business days.</p></div><div class="dp-field"><label class="dp-field-label" for="project">Project type</label><select class="dp-field-input" id="project"><option>Website</option><option>Product</option><option>Brand system</option></select></div></div></div>
+<div class="component-group"><h3 class="h3">Alerts</h3><p>Pair semantic color with a title and a useful message.</p><div class="preview"><div class="dp-alert dp-alert-info" role="status"><div><p class="dp-alert-title">Heads up</p>Review the new guidelines.</div></div><div class="dp-alert dp-alert-success" role="status"><div><p class="dp-alert-title">Published</p>Your changes are live.</div></div><div class="dp-alert dp-alert-danger" role="alert"><div><p class="dp-alert-title">Build failed</p>Check the missing token.</div></div></div></div>
+<div class="component-group"><h3 class="h3">Navigation & disclosure</h3><p>Breadcrumbs show hierarchy. Native details work for disclosure without a framework; tabs and menus need state and keyboard behavior.</p><div class="preview"><nav class="dp-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#foundations">Home</a></li><li><a href="#components">Work</a></li><li class="is-current"><span aria-current="page">Style guide</span></li></ol></nav><details class="dp-accordion"><summary>When should I use disclosure?</summary><p>Use it for supporting details that can be expanded on demand.</p></details></div></div>
+<div class="component-group"><h3 class="h3">Status & data</h3><p>Progress shows a known percentage; loading status needs a text label. Tables need a caption and headers.</p><div class="preview"><div class="dp-progress" role="progressbar" aria-label="Project completion" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"><span style="width:68%"></span></div><p>68% complete</p><div class="row"><span class="dp-spinner" aria-hidden="true"></span><span>Loading project status…</span></div><div class="dp-table-wrap"><table><caption>Recent projects</caption><thead><tr><th scope="col">Project</th><th scope="col">Type</th><th scope="col">Status</th></tr></thead><tbody><tr><th scope="row">GEO audit</th><td>Case study</td><td>Published</td></tr><tr><th scope="row">Fullstack build</th><td>Service</td><td>In progress</td></tr></tbody></table></div></div></div>
+<div class="component-group"><h3 class="h3">Code block</h3><p>Provide a language or filename and keep long lines scrollable.</p><div class="dp-codeblock"><div class="dp-codeblock-head"><span>example.css</span></div><pre><code>h1 { color: var(--blue); }
+a { color: var(--link); }</code></pre></div></div>
+</section>
+<section id="integrations"><h2 class="h2">Frameworks</h2><p class="guidance">The CSS classes and semantic markup are the shared contract. Import the two stylesheets in your app and bind state using your framework. The existing React bundle remains an optional adapter.</p><div class="grid"><div class="framework-example doc-card"><h3 class="h3">Svelte / SvelteKit</h3><pre class="dp-codeblock"><code>&lt;script&gt;let count = 0;&lt;/script&gt;
+&lt;button class="dp-btn dp-btn-primary"
+  onclick={() =&gt; count++}&gt;
+  Clicked {count} times
+&lt;/button&gt;</code></pre></div><div class="framework-example doc-card"><h3 class="h3">Vue</h3><pre class="dp-codeblock"><code>&lt;button class="dp-btn dp-btn-primary"
+  @click="count++"&gt;
+  Clicked {{ count }} times
+&lt;/button&gt;</code></pre></div><div class="framework-example doc-card"><h3 class="h3">React</h3><pre class="dp-codeblock"><code>&lt;button className="dp-btn dp-btn-primary"
+  onClick={() =&gt; setCount(count + 1)}&gt;
+  Clicked {count} times
+&lt;/button&gt;</code></pre></div></div><p class="guidance">See the repository README for complete setup and the framework adapters.</p></section>
+</main></div>
+<script src="components/showcase.js" defer></script>
 </body>
 </html>

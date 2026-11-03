@@ -1,6 +1,6 @@
-# DeadPixel.Design style guide
+# DeadPixel.Design design system
 
-The design system for [DeadPixel.Design](https://deadpixel.design): color and type tokens with light and dark themes, fonts, the logo system, Material Symbols icons and a React component library.
+The design system for [DeadPixel.Design](https://deadpixel.design): shared tokens, CSS component classes, semantic HTML patterns, and optional framework adapters.
 
 Open `index.html` (or the GitHub Pages site, if enabled) to see everything rendered.
 
@@ -11,7 +11,10 @@ Open `index.html` (or the GitHub Pages site, if enabled) to see everything rende
 | `docs/brand-book.md` | Usage rules: voice, color, type, spacing, states, iconography, logo |
 | `tokens/tokens.json` | Source of truth for every token (colors per theme, type scale, spacing, radius, shadows) |
 | `tokens/tokens.css` | The same tokens as CSS custom properties, `@font-face` rules and type classes (`.h1`, `.body`, `.label`…) |
-| `components/bundle.js` | React 18 components on `window.DeadPixel`: core controls plus Breadcrumb, Dropdown, Tabs, Accordion, Progress, Spinner, Pagination, Table, and SelectField |
+| `components/showcase.js` | Framework independent theme switch and color preview for the documentation page |
+| `components/bundle.js` | Optional React 18 bundle on `window.DeadPixel` |
+| `components/vue.bundle.js` | Optional Vue 3 browser bundle on `window.DeadPixelVue` |
+| `components/svelte/` | Svelte 5 source components, compiled by Svelte or SvelteKit |
 | `components/bundle.css` | Component styles, built only from tokens |
 | `components/index.d.ts` | Prop types for every component |
 | `components/<Name>/README.md` | Guidelines per component |
@@ -20,23 +23,35 @@ Open `index.html` (or the GitHub Pages site, if enabled) to see everything rende
 | `assets/logos/` | Pixel skull logo (full size and 512px) |
 | `assets/icons/` | Starter set of Material Symbols Outlined SVGs |
 
-## Quick start
+## Quick start: any framework
 
 ```html
 <link rel="stylesheet" href="tokens/tokens.css">
 <link rel="stylesheet" href="components/bundle.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
-<script src="components/bundle.js"></script>
-<script>
-  const { Button } = window.DeadPixel;
-  ReactDOM.createRoot(document.getElementById('app'))
-    .render(React.createElement(Button, { iconAfter: 'arrow_forward' }, 'Start a project'));
-</script>
+<button class="dp-btn dp-btn-primary" type="button">Start a project</button>
 ```
 
-Only need the tokens? Load `tokens/tokens.css` and use the variables directly:
+The CSS and HTML above work in plain HTML, React, Vue, and Svelte. Only need the tokens? Load `tokens/tokens.css` and use the variables directly:
+
+### Vue 3 browser bundle
+
+Load Vue 3's global build, then `components/vue.bundle.js`. Register the adapter with `app.use(window.DeadPixelVue)`. Use `<DpButton>`, `<DpTag>`, `<DpCard>`, `<DpAlert>`, and `<DpTextField>`. The stylesheets above are still required.
+
+### Svelte 5 / SvelteKit
+
+Copy or import the token and component stylesheets into your app, keeping the `fonts/` directory beside `tokens/` so font URLs resolve. Import from `components/svelte/index.ts` in a Svelte project:
+
+```svelte
+<script lang="ts">
+  import { Button, Tag } from './components/svelte';
+</script>
+
+<Button variant="primary" onclick={() => alert('Hello')}>Start a project</Button>
+<Tag tone="blue">Case study</Tag>
+```
+
+Svelte compiles these source components during the app build. The adapters currently cover five core components; use the documented HTML/CSS patterns for the remaining components.
 
 ```css
 h1 { font-family: var(--font-display); color: var(--blue); }

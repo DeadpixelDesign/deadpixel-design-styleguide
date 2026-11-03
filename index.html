@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DeadPixel.Design style guide</title>
+<title>DeadPixel.Design design system</title>
 <link rel="stylesheet" href="tokens/tokens.css">
 <link rel="stylesheet" href="components/bundle.css">
 <style>
@@ -24,6 +24,23 @@
   .component-divider { width: 100%; border: 0; border-top: 1px solid var(--line); margin: 0; }
   header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
   .logo { width: 88px; height: 80px; object-fit: contain; image-rendering: pixelated; background: transparent; display: block; }
+  .intro, .guidance { max-width: 72ch; line-height: 1.5; margin: 0; color: var(--ink-muted); }
+  .section-nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-alt); }
+  .section-nav a { color: var(--link); font-weight: 700; text-underline-offset: 3px; }
+  .foundation-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: var(--space-4); }
+  .foundation-note { padding: var(--space-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); line-height: 1.5; }
+  .foundation-note h3 { margin-bottom: var(--space-2); }
+  .foundation-note p, .foundation-note ul { margin: 0; }
+  .foundation-note ul { padding-left: var(--space-4); }
+  .doc-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: var(--space-3); margin: 0; }
+  .doc-list div { padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+  .doc-list dt { font-weight: 700; color: var(--ink); }
+  .doc-list dd { margin: var(--space-1) 0 0; line-height: 1.5; color: var(--ink-muted); }
+  .component-subsection { scroll-margin-top: var(--space-4); }
+  .component-subsection > p { margin: 0; }
+  .component-subsection .dp-tabs { min-width: min(100%, 300px); }
+  .component-subsection .dp-progress { max-width: 520px; }
+  @media (max-width: 600px) { section { padding: var(--space-4); } .foundation-grid, .doc-list { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -32,13 +49,27 @@
   <header>
     <div style="display:flex;gap:var(--space-4);align-items:center">
       <img class="logo" src="assets/logos/hangman-logo.svg?v=two-eye" alt="DeadPixel.Design hangman logo">
-      <div><p class="label" style="margin:0;color:var(--ink-muted)">Style guide</p><h1 class="h1">DeadPixel.Design</h1></div>
+      <div><p class="label" style="margin:0;color:var(--ink-muted)">Design system</p><h1 class="h1">DeadPixel.Design</h1></div>
     </div>
     <div id="theme"></div>
   </header>
+  <p class="intro">A working reference for the DeadPixel.Design visual language. Explore the foundations, try the components, and use the guidance and code examples to build consistent interfaces.</p>
+  <nav class="section-nav" aria-label="Design system sections"><a href="#foundations">Foundations</a><a href="#typography">Typography</a><a href="#color">Color</a><a href="#components-section">Components</a><a href="#adoption">Use the system</a></nav>
 
-  <section>
-    <h2 class="h2">Typography</h2>
+  <section id="foundations" aria-labelledby="foundations-title">
+    <h2 class="h2" id="foundations-title">Foundations</h2>
+    <p class="guidance">The original style guide supplies the tokens, typefaces, themes, and interaction rules. Use <code class="dp-code">tokens/tokens.json</code> as the source of truth and <code class="dp-code">tokens/tokens.css</code> in the browser.</p>
+    <div class="foundation-grid">
+      <div class="foundation-note"><h3 class="h3">Spacing & layout</h3><p>Use a 4px base scale: 4, 8, 12, 16, 24, 32, and 48px. The content container is 1200px wide with a 16px gutter. Use 16px inside cards and 24–48px between major groups.</p></div>
+      <div class="foundation-note"><h3 class="h3">Shape & elevation</h3><p>Use 4px corners for controls and 8px for cards and alerts. Keep surfaces mostly flat; use the small shadow for raised menus and hover feedback.</p></div>
+      <div class="foundation-note"><h3 class="h3">Interaction</h3><p>Controls need visible keyboard focus, meaningful labels, and at least 44px touch targets. Pair state colors with words or icons. Respect reduced motion.</p></div>
+      <div class="foundation-note"><h3 class="h3">Voice</h3><p>Write in American English, sentence case, and active voice. Use direct verbs for actions and plain technical language. Show descriptive link text.</p></div>
+    </div>
+  </section>
+
+  <section id="typography" aria-labelledby="typography-title">
+    <h2 class="h2" id="typography-title">Typography</h2>
+    <p class="guidance">Raleway 700 is for headings, Nunito Sans for interface and body text, and Roboto Mono for code. Keep long reading at a 1.5 line height and around 65 characters per line.</p>
     <p class="h1">H1 · Raleway 34px</p>
     <p class="h2">H2 · Raleway 25px</p>
     <p class="h3">H3 · Raleway 20px</p>
@@ -47,14 +78,26 @@
     <p class="small" style="margin:0;color:var(--ink-muted)">Small · Updated 30 Nov 2024 · 6 min read</p>
   </section>
 
-  <section>
-    <h2 class="h2">Color</h2>
+  <section id="color" aria-labelledby="color-title">
+    <h2 class="h2" id="color-title">Color</h2>
+    <p class="guidance">Brand blue and red are for marks and large headings. Use <code class="dp-code">blue-text</code> and <code class="dp-code">red-text</code> for body-size text; semantic colors carry information alongside labels. The Light, Dark, and System controls above preview the same token set.</p>
     <div class="swatches" id="swatches"></div>
   </section>
 
-  <section>
-    <h2 class="h2">Components</h2>
+  <section id="components-section" aria-labelledby="components-title">
+    <h2 class="h2" id="components-title">Components</h2>
+    <p class="guidance">These live examples use the React component bundle. Each group includes its purpose, key options, and accessibility guidance. The API types are in <code class="dp-code">components/index.d.ts</code>.</p>
     <div id="components" style="display:grid;gap:var(--space-6)"></div>
+  </section>
+  <section id="adoption" aria-labelledby="adoption-title">
+    <h2 class="h2" id="adoption-title">Use the system</h2>
+    <p class="guidance">Load the token stylesheet before the component stylesheet, then load React 18, ReactDOM, and the bundle. Components are available on <code class="dp-code">window.DeadPixel</code>. Theme follows the device unless <code class="dp-code">data-theme="light"</code> or <code class="dp-code">data-theme="dark"</code> is set on the root element.</p>
+    <pre class="dp-codeblock"><code>&lt;link rel="stylesheet" href="tokens/tokens.css"&gt;
+&lt;link rel="stylesheet" href="components/bundle.css"&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+&lt;script src="components/bundle.js"&gt;&lt;/script&gt;</code></pre>
+    <p class="guidance">For implementation details, browse the <a class="dp-link" href="https://github.com/DeadpixelDesign/deadpixel-design-styleguide/tree/main/components">component source and types</a>. Add new patterns to the bundle, types, documentation, and this preview together.</p>
   </section>
 </main>
 </div>
@@ -136,6 +179,50 @@
       h('div', { className: 'component-group' },
         h(D.CodeBlock, { filename: 'example.css', language: 'css', code: 'h1 { color: var(--blue); }\na { color: var(--link); }\na:hover { color: var(--link-hover); }' })))
   ));
+  var componentGuidance = {
+    'Actions & tags': [
+      ['Button', 'Use primary for the main action, secondary for supporting actions, and ghost for low emphasis. Sizes: medium and small. Keep labels verb-led; provide a label for icon-only buttons.'],
+      ['Tag', 'Use neutral, blue, or red tone for compact metadata. A tag does not perform an action; use a button or link when it is interactive.']
+    ],
+    'Links & inline code': [
+      ['Link', 'Use descriptive link text. External links open in a new tab with a visible icon and safe link attributes.'],
+      ['Code', 'Use inline code for commands, filenames, tokens, and values within a sentence.']
+    ],
+    'Cards': [['Card', 'Group a title, eyebrow, body, and optional footer. Add href only when the whole card represents a destination. Keep one clear linked title.']],
+    'Form fields': [
+      ['TextField', 'Always provide a visible label. Use hint for help and error for validation; errors are associated with the input and set aria-invalid. Supports multiline input.'],
+      ['SelectField', 'Use a native select for a short, known list of options. Provide a visible label and a helpful default.']
+    ],
+    'Alerts': [['Alert', 'Use info, success, or danger tone for feedback. Include a useful title and plain-language next step. Danger is announced as an alert.']],
+    'Navigation & disclosure': [
+      ['Breadcrumb', 'Show hierarchy from broad to specific. The final item represents the current page.'],
+      ['Dropdown', 'Use for secondary actions that belong together. Keep menu item labels specific.'],
+      ['Tabs', 'Switch between related views at the same level. Keep labels short and make the active view clear.'],
+      ['Accordion', 'Reveal supporting information on demand. Headings remain visible while panels open and close.']
+    ],
+    'Status & data': [
+      ['Progress', 'Show measurable completion from 0 to 100 with a descriptive label.'],
+      ['Spinner', 'Use only when duration is unknown; pair it with a visible status message.'],
+      ['Pagination', 'Use for stable page sets. Supply the current page and update it with onChange.'],
+      ['Table', 'Use for comparable records. Provide a caption and column headings; the first cell of each row identifies the record.']
+    ],
+    'Code block': [['CodeBlock', 'Use for copyable, multi-line examples. Provide a filename or language when it helps readers understand the snippet.']]
+  };
+  // React commits the preview before the next frame; add documentation beside each group.
+  requestAnimationFrame(function () {
+    document.querySelectorAll('.component-subsection').forEach(function (group) {
+      var title = group.querySelector('h3');
+      var entries = title && componentGuidance[title.textContent];
+      if (!entries) return;
+      var list = document.createElement('dl'); list.className = 'doc-list';
+      entries.forEach(function (entry) {
+        var item = document.createElement('div'), term = document.createElement('dt'), detail = document.createElement('dd');
+        term.textContent = entry[0]; detail.textContent = entry[1];
+        item.append(term, detail); list.appendChild(item);
+      });
+      title.insertAdjacentElement('afterend', list);
+    });
+  });
 </script>
 </body>
 </html>
